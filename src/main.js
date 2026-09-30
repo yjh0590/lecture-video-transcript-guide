@@ -184,6 +184,16 @@ app.innerHTML = `
     <p class="dialog-note">앱 다운로드 주소는 GitHub 배포 저장소를 만든 뒤 이 버튼에 연결할 예정입니다.</p>
   </dialog>
 
+  <dialog id="download-dialog" aria-labelledby="download-dialog-title">
+    <span class="dialog-icon">♫</span>
+    <h2 id="download-dialog-title">MP3를 내려받을까요?</h2>
+    <p id="download-dialog-file"></p>
+    <div class="button-row end download-dialog-actions">
+      <button id="cancel-download" class="button button-ghost" type="button">아니오</button>
+      <button id="confirm-download" class="button button-primary" type="button">예, 내려받기</button>
+    </div>
+  </dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 `;
 
@@ -432,6 +442,26 @@ $("#choose-video").addEventListener("click", () => $("#video-input").click());
 $("#video-input").addEventListener("change", (event) => selectVideo(event.target.files[0]));
 $("#step1-next").addEventListener("click", () => completeAndGo(0, 1));
 $("#convert-button").addEventListener("click", convertVideo);
+const downloadDialog = $("#download-dialog");
+[$("#download-audio"), $("#download-audio-step3")].forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!state.audioUrl || link.classList.contains("disabled-link")) return;
+    $("#download-dialog-file").textContent = state.audioName;
+    downloadDialog.showModal();
+  });
+});
+$("#cancel-download").addEventListener("click", () => downloadDialog.close());
+$("#confirm-download").addEventListener("click", () => {
+  downloadDialog.close();
+  if (!state.audioUrl) return;
+  const link = document.createElement("a");
+  link.href = state.audioUrl;
+  link.download = state.audioName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+});
 $("#step2-next").addEventListener("click", () => setStep(2));
 $("#clova-check").addEventListener("change", (event) => {
   if (event.target.checked) completeAndGo(2, 3);

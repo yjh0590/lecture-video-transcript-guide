@@ -115,6 +115,7 @@ dialog::backdrop { background: rgba(7,35,55,.45); backdrop-filter: blur(3px); }
 dialog h2 { margin: 18px 0 10px; font-size: 1.4rem; }
 dialog p { color: var(--muted); line-height: 1.65; }
 .dialog-note { padding: 12px 14px; background: #f0f6f8; border-radius: 12px; font-size: .82rem; }
+.download-dialog-actions { margin-top: 24px; }
 .toast { position: fixed; left: 50%; bottom: 24px; z-index: 20; padding: 13px 18px; color: white; background: var(--blue-deep); border-radius: 12px; box-shadow: 0 12px 30px rgba(7,63,114,.22); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; transition: .2s ease; }
 .toast.show { transform: translate(-50%, 0); opacity: 1; }
 
