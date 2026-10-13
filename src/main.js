@@ -97,7 +97,7 @@ app.innerHTML = `
 
       <section class="page" data-page="1">
         <span class="kicker">✦ 2번째 걸음</span>
-        <h1>강의 영상을<br />MP3로 바꿔요</h1>
+        <h1>강의 영상을 MP3로 바꿔요</h1>
         <p class="lead">음성 인식에 알맞게 용량을 줄입니다. 변환은 이 브라우저 안에서만 진행됩니다.</p>
         <div class="media-card">
           <div class="file-badge">♫</div>
